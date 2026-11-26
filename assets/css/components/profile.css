@@ -8,13 +8,36 @@
   position: relative;
   background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 60%, #3b82f6 100%);
   color: #ffffff;
-  padding: 64px 20px 80px;
+  padding: 64px 32px 80px;
   overflow: hidden;
   border-bottom: 4px solid #38bdf8;
 }
 
+/* Container umum landing page — menggantikan semua inline style max-width di index.html */
+.container-landing {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+@media (max-width: 768px) {
+  .container-landing {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-landing {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
 .hero-content {
-  max-width: var(--lebar);
+  max-width: 1280px;
   margin: 0 auto;
 }
 
