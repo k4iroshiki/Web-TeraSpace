@@ -48,6 +48,18 @@
   --garis: #d1d5db;
   --latar: #f8fafc;
   --kartu: #ffffff;
+  /* Design Tokens Spesifikasi Pola Layout */
+  --navy: #1F2A44;
+  --navy-hover: #151D30;
+  --slate-blue: #5B6B8A;
+  --slate-blue-dark: #4A5770;
+  --panel-bg: #E9EAEF;
+  --panel-border: #D8DAE2;
+  --radius-panel: 24px;
+  --radius-card: 16px;
+  --radius-tile: 12px;
+  --radius-pill: 9999px;
+  --section-gap: clamp(3.5rem, 5.5vw, 4.75rem);
   --radius: 8px;
   --radius-besar: 12px;
   --lebar: 960px;
