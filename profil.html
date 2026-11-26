@@ -22,29 +22,31 @@
   <body>
     <!-- Topbar Header -->
     <header class="topbar">
-      <div class="topbar-kiri">
-        <a href="index.html" class="brand" title="Kembali ke Profil Utama">
-          <img
-            src="assets/images/logo.png"
-            alt="Logo Teras JTI"
-            class="logo-img"
-          />
-          <span class="brand-title">Teras JTI</span>
-        </a>
+      <div class="topbar-inner">
+        <div class="topbar-kiri">
+          <a href="index.html" class="brand" title="Kembali ke Profil Utama">
+            <img
+              src="assets/images/logo.png"
+              alt="Logo Teras JTI"
+              class="logo-img"
+            />
+            <span class="brand-title">Teras JTI</span>
+          </a>
 
-        <nav class="nav-utama" aria-label="Navigasi Utama">
-          <a href="index.html" class="nav-link">Profil Utama</a>
-          <a href="dashboard.html" class="nav-link">Reservasi</a>
-          <a href="riwayat.html" class="nav-link">Riwayat</a>
-          <a href="profil.html" class="nav-link active">Akun</a>
-        </nav>
-      </div>
+          <nav class="nav-utama" aria-label="Navigasi Utama">
+            <a href="index.html" class="nav-link">Profil Utama</a>
+            <a href="dashboard.html" class="nav-link">Reservasi</a>
+            <a href="riwayat.html" class="nav-link">Riwayat</a>
+            <a href="profil.html" class="nav-link active">Akun</a>
+          </nav>
+        </div>
 
-      <div class="topbar-kanan">
-        <a href="profil.html" class="user-info text-decoration-none">
-          <span class="user-avatar" id="topbar-avatar">FA</span>
-          <span class="user-name" id="topbar-username">Farrel Ananta</span>
-        </a>
+        <div class="topbar-kanan">
+          <a href="profil.html" class="user-info text-decoration-none">
+            <span class="user-avatar" id="topbar-avatar">FA</span>
+            <span class="user-name" id="topbar-username">Farrel Ananta</span>
+          </a>
+        </div>
       </div>
     </header>
 
@@ -60,51 +62,54 @@
 
         <h1 class="profil-heading">Profil Akun Mahasiswa</h1>
 
-        <!-- Kartu Info Pengguna -->
-        <section class="profil-card profil-user-card mb-4">
-          <div class="profil-avatar" id="profil-big-avatar">FA</div>
-          <div class="profil-user-meta flex-grow-1">
-            <h2 class="profil-nama m-0 fs-5" id="profil-display-name">Farrel Ananta Firmansyah</h2>
-            <p class="profil-email text-muted small m-0" id="profil-display-email">farrel@student.polije.ac.id</p>
-            <div class="mt-2">
-              <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1 rounded-pill small">
+        <!-- Layout dua kolom: sidebar kiri + konten kanan -->
+        <div class="profil-layout">
+
+          <!-- Kolom Kiri: Kartu Info Pengguna (Sidebar) -->
+          <section class="profil-card profil-user-card">
+            <div class="profil-avatar" id="profil-big-avatar">FA</div>
+            <div>
+              <h2 class="profil-nama" id="profil-display-name">Farrel Ananta Firmansyah</h2>
+              <p class="profil-email" id="profil-display-email">farrel@student.polije.ac.id</p>
+              <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1 rounded-pill small d-inline-block mt-2">
                 NIM: E41240001 &middot; D4 Teknik Informatika Gol C
               </span>
             </div>
-          </div>
-          <div>
-            <button class="btn btn-outline-primary btn-sm" id="btn-edit-profil">
-              Ubah Data
-            </button>
-          </div>
-        </section>
+            <div class="mt-3 w-100">
+              <button class="btn btn-outline-primary btn-sm w-100" id="btn-edit-profil">
+                Ubah Data
+              </button>
+            </div>
+          </section>
 
-        <!-- Kartu Daftar Menu Pengaturan -->
-        <section class="profil-card profil-menu-list">
-          <a href="riwayat.html" class="profil-menu-item">
-            <span>&#128197; Riwayat Reservasi Saya</span>
-            <span class="profil-chevron" aria-hidden="true">&rsaquo;</span>
-          </a>
+          <!-- Kolom Kanan: Kartu Daftar Menu Pengaturan -->
+          <section class="profil-card profil-menu-list">
+            <a href="riwayat.html" class="profil-menu-item">
+              <span>&#128197; Riwayat Reservasi Saya</span>
+              <span class="profil-chevron" aria-hidden="true">&rsaquo;</span>
+            </a>
 
-          <a href="about/tentang.html" class="profil-menu-item">
-            <span>&#128101; Informasi Tim Pengembang &amp; Proyek</span>
-            <span class="profil-chevron" aria-hidden="true">&rsaquo;</span>
-          </a>
+            <a href="about/tentang.html" class="profil-menu-item">
+              <span>&#128101; Informasi Tim Pengembang &amp; Proyek</span>
+              <span class="profil-chevron" aria-hidden="true">&rsaquo;</span>
+            </a>
 
-          <a href="#syarat-ketentuan" class="profil-menu-item" data-bs-toggle="modal" data-bs-target="#modalSyarat">
-            <span>&#128220; Syarat &amp; Ketentuan Penggunaan Fasilitas</span>
-            <span class="profil-chevron" aria-hidden="true">&rsaquo;</span>
-          </a>
+            <a href="#syarat-ketentuan" class="profil-menu-item" data-bs-toggle="modal" data-bs-target="#modalSyarat">
+              <span>&#128220; Syarat &amp; Ketentuan Penggunaan Fasilitas</span>
+              <span class="profil-chevron" aria-hidden="true">&rsaquo;</span>
+            </a>
 
-          <a href="#keamanan" class="profil-menu-item" data-bs-toggle="modal" data-bs-target="#modalKeamanan">
-            <span>&#128274; Keamanan Akun &amp; Kata Sandi</span>
-            <span class="profil-chevron" aria-hidden="true">&rsaquo;</span>
-          </a>
+            <a href="#keamanan" class="profil-menu-item" data-bs-toggle="modal" data-bs-target="#modalKeamanan">
+              <span>&#128274; Keamanan Akun &amp; Kata Sandi</span>
+              <span class="profil-chevron" aria-hidden="true">&rsaquo;</span>
+            </a>
 
-          <a href="login.html" class="profil-menu-item profil-logout" id="btn-logout-user">
-            <span class="fw-semibold">&#128682; Keluar Akun (Logout)</span>
-          </a>
-        </section>
+            <a href="login.html" class="profil-menu-item profil-logout" id="btn-logout-user">
+              <span class="fw-semibold">&#128682; Keluar Akun (Logout)</span>
+            </a>
+          </section>
+
+        </div><!-- /profil-layout -->
       </div>
     </main>
 
