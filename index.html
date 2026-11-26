@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Teras JTI - Website Profil &amp; Reservasi Tempat Co-Working Space</title>
+    <title>Teras JTI - Website Profil &amp; Reservasi Co-Working Space</title>
     <!-- Bootstrap 5 CSS via CDN -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -18,569 +18,761 @@
     <link rel="stylesheet" href="assets/css/components/status.css" />
     <link rel="stylesheet" href="assets/css/components/table.css" />
     <link rel="stylesheet" href="assets/css/components/profile.css" />
+    <link rel="stylesheet" href="assets/css/components/patterns.css" />
   </head>
   <body>
-    <!-- Topbar Navigasi Publik (Responsive Bootstrap Navbar) -->
-    <header class="navbar navbar-expand-lg bg-white border-bottom sticky-top py-3 px-3 px-md-4">
-      <div class="container-fluid px-0" style="max-width: var(--lebar)">
-        <a class="navbar-brand d-flex align-items-center gap-2 m-0 text-dark fw-bold" href="index.html">
-          <img
-            src="assets/images/logo.png"
-            alt="Logo Teras JTI"
-            width="36"
-            height="36"
-            class="rounded object-fit-cover"
-          />
-          <span style="font-family: var(--font-judul); font-size: 1.15rem; ">TeraSpace</span>
-        </a>
+    <!-- ====================================================================
+         POLA 0: NAVBAR PILL (Tinggi 56px, Ramping, Satu Baris)
+         ==================================================================== -->
+    <header class="pola-navbar">
+      <div class="layout-container">
+        <div class="navbar-container">
+          <!-- Logo & Brand Navy -->
+          <a class="pola-navbar-brand" href="index.html" aria-label="Beranda Teras JTI">
+            <img
+              src="assets/images/logo.png"
+              alt="Logo Teras JTI"
+              width="28"
+              height="28"
+            />
+            <span>Teras JTI</span>
+          </a>
 
-        <!-- Hamburger Button untuk Layar Mobile -->
-        <button
-          class="navbar-toggler border-0 shadow-none"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navPublicMenu"
-          aria-controls="navPublicMenu"
-          aria-expanded="false"
-          aria-label="Toggle navigasi"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+          <!-- Menu Navigasi Desktop -->
+          <nav class="d-none d-lg-flex" aria-label="Navigasi Utama">
+            <ul class="pola-navbar-links">
+              <li><a class="pola-navbar-link active" href="#beranda">Beranda</a></li>
+              <li><a class="pola-navbar-link" href="#tentang">Tentang</a></li>
+              <li><a class="pola-navbar-link" href="#fasilitas">Fasilitas</a></li>
+              <li><a class="pola-navbar-link" href="#galeri">Galeri</a></li>
+              <li><a class="pola-navbar-link" href="#alur">Alur</a></li>
+              <li><a class="pola-navbar-link" href="#jadwal">Jadwal</a></li>
+              <li><a class="pola-navbar-link" href="#faq">FAQ</a></li>
+              <li><a class="pola-navbar-link" href="#kontak">Kontak</a></li>
+            </ul>
+          </nav>
 
-        <!-- Menu Link Navigasi -->
-        <div class="collapse navbar-collapse justify-content-between" id="navPublicMenu">
-          <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-1 gap-lg-2">
-            <li class="nav-item">
-              <a class="nav-link fw-medium active" aria-current="page" href="#beranda">Beranda</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-medium" href="#tentang">Tentang</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-medium" href="#fasilitas">Fasilitas</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-medium" href="#galeri">Galeri</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-medium" href="#jadwal">Jadwal</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-medium" href="#faq">FAQ</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link fw-medium" href="#kontak">Kontak</a>
-            </li>
-          </ul>
-
-          <div class="d-flex align-items-center gap-2 mt-2 mt-lg-0">
-            <a href="login.html" class="btn btn-outline-primary btn-sm px-3 fw-semibold">
+          <!-- Aksi CTA Kanan: Masuk & Tombol Pill Navy -->
+          <div class="pola-navbar-actions">
+            <a href="login.html" class="d-none d-sm-inline-block text-secondary text-decoration-none fw-semibold small me-1">
               Masuk
             </a>
-            <a href="dashboard.html" class="btn btn-primary btn-sm px-3 fw-semibold">
+            <a href="dashboard.html" class="btn-pill btn-pill-navy">
               Pesan Ruang &rarr;
             </a>
+
+            <!-- Mobile Toggler -->
+            <button
+              class="navbar-toggler d-lg-none border-0 p-1 ms-1 text-dark"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navMobileMenu"
+              aria-controls="navMobileMenu"
+              aria-expanded="false"
+              aria-label="Toggle menu"
+            >
+              <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
           </div>
+        </div>
+
+        <!-- Mobile Collapse Menu -->
+        <div class="collapse d-lg-none pb-3 border-top mt-2" id="navMobileMenu">
+          <ul class="navbar-nav pt-2 gap-1">
+            <li class="nav-item"><a class="nav-link py-2" href="#beranda">Beranda</a></li>
+            <li class="nav-item"><a class="nav-link py-2" href="#tentang">Tentang</a></li>
+            <li class="nav-item"><a class="nav-link py-2" href="#fasilitas">Fasilitas</a></li>
+            <li class="nav-item"><a class="nav-link py-2" href="#galeri">Galeri</a></li>
+            <li class="nav-item"><a class="nav-link py-2" href="#alur">Alur</a></li>
+            <li class="nav-item"><a class="nav-link py-2" href="#jadwal">Jadwal</a></li>
+            <li class="nav-item"><a class="nav-link py-2" href="#faq">FAQ</a></li>
+            <li class="nav-item"><a class="nav-link py-2" href="#kontak">Kontak</a></li>
+            <li class="nav-item pt-2 border-top">
+              <a class="nav-link text-primary fw-semibold" href="login.html">Masuk Akun Mahasiswa</a>
+            </li>
+          </ul>
         </div>
       </div>
     </header>
 
-    <main>
-      <!-- 1. Hero Section -->
-      <section id="beranda" class="hero-section">
-        <div class="hero-content">
-          <h1 class="hero-title">
-            Ruang Kolaborasi &amp; Reservasi Tempat Nyaman di Kampus
-          </h1>
-          <p class="hero-desc">
-            Teras JTI hadir untuk mendukung produktivitas mahasiswa dan dosen Jurusan Teknologi Informasi Politeknik Negeri Jember. Nikmati fasilitas diskusi, seminar mini, dan belajar mandiri dengan pemesanan jadwal yang praktis tanpa bentrok.
-          </p>
-          <div class="hero-actions">
-            <a href="dashboard.html" class="btn-hero-primary">
-              Cari &amp; Reservasi Ruangan
-            </a>
-            <a href="#fasilitas" class="btn-hero-secondary">
-              Lihat Fasilitas &darr;
-            </a>
-          </div>
+    <div class="layout-wrapper">
+      <main>
+        <!-- ==================================================================
+             POLA A: HERO FOTO FULL (Cover Foto, Tipografi Raksasa, Pill Buttons)
+             ================================================================== -->
+        <section id="beranda" class="layout-container pt-3">
+          <div class="pola-hero">
+            <img
+              src="assets/images/tempat.jpeg"
+              alt="Suasana Ruang Belajar Teras JTI"
+              class="pola-hero-bg"
+              width="1599"
+              height="899"
+            />
+            <div class="pola-hero-overlay"></div>
 
-          <div class="hero-stats">
-            <div class="stat-item">
-              <h3>4+ Ruangan</h3>
-              <p>Ruang Diskusi, Aula Mini, &amp; Hot Desk</p>
+            <div class="pola-hero-content">
+              <div class="pola-hero-title-wrap">
+                <h1 class="pola-hero-title">TERASPACE</h1>
+                <span class="pola-hero-badge-label">CO-WORKING SPACE JTI POLIJE</span>
+              </div>
+              <p class="pola-hero-desc">
+                Ruang kolaborasi, diskusi kelompok, dan seminar mini terintegrasi untuk civitas akademika Jurusan Teknologi Informasi Politeknik Negeri Jember.
+              </p>
+              <div class="pola-hero-actions">
+                <a href="dashboard.html" class="btn-pill btn-pill-white">
+                  Pesan Ruang &rarr;
+                </a>
+                <a href="#fasilitas" class="btn-pill btn-pill-outline-white">
+                  Jelajahi Fasilitas &darr;
+                </a>
+              </div>
             </div>
-            <div class="stat-item">
-              <h3>Free Wi-Fi</h3>
-              <p>Akses internet berkecepatan tinggi</p>
-            </div>
-            <div class="stat-item">
-              <h3>50+ Kapasitas</h3>
-              <p>Daya tampung nyaman &amp; ber-AC</p>
-            </div>
-            <div class="stat-item">
-              <h3>08:00 - 16:00</h3>
-              <p>Jam layanan operasional Senin - Jumat</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 2. Section Tentang Kami & Masalah yang Diselesaikan -->
-      <section id="tentang" class="py-5" style="max-width: var(--lebar); margin: 0 auto; padding-left: 16px; padding-right: 16px;">
-        <div class="section-heading-wrap">
-          <h2 class="section-title">Dedikasi untuk Kolaborasi Akademik</h2>
-          <p class="section-subtitle">
-            Mengubah cara mahasiswa memesan ruang belajar dari manual menjadi serba digital, transparan, dan terstruktur.
-          </p>
-        </div>
-
-        <section class="features-grid mb-5">
-          <div class="feature-box">
-            <div class="feature-icon">&#128197;</div>
-            <h3>Pencegahan Jadwal Bentrok</h3>
-            <p>
-              Sistem kalender digital memungkinkan pengecekan ketersediaan slot per jam secara langsung sehingga tidak ada lagi perebutan ruangan di tempat.
-            </p>
-          </div>
-
-          <div class="feature-box">
-            <div class="feature-icon">&#9889;</div>
-            <h3>Reservasi Mandiri Cepat</h3>
-            <p>
-              Pengguna cukup memilih tanggal, slot jam, dan kapasitas. Ruang diskusi gratis dapat dikonfirmasi seketika tanpa menunggu persetujuan berbelit.
-            </p>
-          </div>
-
-          <div class="feature-box">
-            <div class="feature-icon">&#128179;</div>
-            <h3>Sistem DP Aman (Aula Mini)</h3>
-            <p>
-              Dukungan pembayaran uang muka fleksibel via QRIS dan transfer bank untuk ruangan representatif kegiatan himpunan atau seminar mini.
-            </p>
           </div>
         </section>
 
-      <!-- 3. Section Fasilitas & Ruangan -->
-      <section id="fasilitas" class="py-5 bg-white border-top border-bottom">
-        <div style="max-width: var(--lebar); margin: 0 auto; padding-left: 16px; padding-right: 16px;">
-          <div class="section-heading-wrap">
-            <h2 class="section-title">Fasilitas Nyaman Sesuai Kebutuhanmu</h2>
-            <p class="section-subtitle">
-              Pilih ruang belajar yang tepat untuk kelompok kecil atau kegiatan seminar yang lebih besar.
-            </p>
-          </div>
-
-          <div class="fasilitas-grid">
-            <!-- Kartu 1: Ruang Diskusi -->
-            <article class="fasilitas-card">
-              <img
-                src="assets/images/tempat.jpeg"
-                alt="Foto Ruang Diskusi Teras JTI"
-                class="fasilitas-thumb"
-              />
-              <div class="fasilitas-body">
-                <div class="fasilitas-badges">
-                  <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1 rounded-pill">
-                    GRATIS
-                  </span>
-                  <span class="badge bg-light text-secondary border px-2 py-1 rounded-pill">
-                    Maks. 6-8 Orang
-                  </span>
-                </div>
-                <h3>Ruang Diskusi</h3>
-                <p class="text-muted small">
-                  Cocok untuk kerja kelompok tugas akhir, brainstorming proyek aplikasi, atau bimbingan akademik bersama dosen.
+        <!-- ==================================================================
+             POLA B: INTRO 2 KOLOM (Teks & Statistik + 3 Kartu Fitur Kanan)
+             ================================================================== -->
+        <section id="tentang" class="layout-container section-spacer">
+          <div class="layout-column-content">
+            <div class="pola-b-grid">
+              <!-- Kolom Kiri -->
+              <div class="pola-b-left">
+                <h2 class="pola-b-heading">
+                  Dedikasi untuk Kolaborasi Akademik Tanpa Sekat
+                </h2>
+                <p class="pola-b-desc">
+                  Mengubah cara civitas akademika memesan ruang belajar dari cara manual menjadi serba digital, transparan, dan terjadwal rapi tanpa bentrok.
                 </p>
-                <div class="fasilitas-specs">
-                  <span class="spec-pill">Wi-Fi Cepat</span>
-                  <span class="spec-pill">Proyektor HDMI</span>
-                  <span class="spec-pill">Whiteboard</span>
-                  <span class="spec-pill">Stop Kontak</span>
-                  <span class="spec-pill">Ruang Ber-AC</span>
-                </div>
-                <a href="detail-tempat.html" class="btn btn-primary btn-sm btn-booking">
-                  Lihat Jadwal &amp; Reservasi
-                </a>
-              </div>
-            </article>
 
-            <!-- Kartu 2: Aula Mini -->
-            <article class="fasilitas-card">
-              <img
-                src="assets/images/aulamini.webp"
-                alt="Foto Aula Mini Teras JTI"
-                class="fasilitas-thumb"
-              />
-              <div class="fasilitas-body">
-                <div class="fasilitas-badges">
-                  <span class="badge bg-warning-subtle text-warning-emphasis border border-warning-subtle px-2 py-1 rounded-pill">
-                    DP Rp 50.000
-                  </span>
-                  <span class="badge bg-light text-secondary border px-2 py-1 rounded-pill">
-                    Maks. 15-20 Orang
-                  </span>
+                <!-- 3 Ikon Sekunder / Sosial -->
+                <div class="pola-b-socials">
+                  <!-- WhatsApp Link -->
+                  <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="pola-b-social-link" aria-label="WhatsApp Resepsionis">
+                    <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.44 19.65L5.27 16.61L5.09 16.32C4.24 14.97 3.8 13.41 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/>
+                    </svg>
+                  </a>
+                  <!-- Email Link -->
+                  <a href="mailto:terasjti@polije.ac.id" class="pola-b-social-link" aria-label="Kirim Email">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                  </a>
+                  <!-- Instagram Link -->
+                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="pola-b-social-link" aria-label="Instagram Teras JTI">
+                    <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                      <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                    </svg>
+                  </a>
                 </div>
-                <h3>Aula Mini</h3>
-                <p class="text-muted small">
-                  Ruang representatif untuk seminar mini, workshop teknologi, rapat pleno himpunan (HMD/BEM), atau pelatihan skill.
-                </p>
-                <div class="fasilitas-specs">
-                  <span class="spec-pill">Sound System</span>
-                  <span class="spec-pill">Layar LCD Lebar</span>
-                  <span class="spec-pill">Microphone</span>
-                  <span class="spec-pill">Meja Konferensi</span>
-                  <span class="spec-pill">Full AC</span>
-                </div>
-                <a href="detail-tempat.html" class="btn btn-primary btn-sm btn-booking">
-                  Lihat Jadwal &amp; Reservasi
-                </a>
-              </div>
-            </article>
 
-            <!-- Kartu 3: Hot Desk & Cafe Corner -->
-            <article class="fasilitas-card">
-              <div class="d-flex align-items-center justify-content-center bg-light fasilitas-thumb border-bottom">
-                <span class="fs-1 text-primary">&#9749;</span>
-              </div>
-              <div class="fasilitas-body">
-                <div class="fasilitas-badges">
-                  <span class="badge bg-info-subtle text-info-emphasis border border-info-subtle px-2 py-1 rounded-pill">
-                    AREA UMUM
-                  </span>
-                  <span class="badge bg-light text-secondary border px-2 py-1 rounded-pill">
-                    Walk-in Access
-                  </span>
-                </div>
-                <h3>Hot Desk &amp; Mini Cafe</h3>
-                <p class="text-muted small">
-                  Meja belajar individual dengan suasana rileks di teras, didukung mini cafe untuk memesan minuman dan kudapan ringan.
-                </p>
-                <div class="fasilitas-specs">
-                  <span class="spec-pill">Akses Bebas</span>
-                  <span class="spec-pill">Menu Kopi &amp; Snack</span>
-                  <span class="spec-pill">Stop Kontak Meja</span>
-                  <span class="spec-pill">Outdoor Cozy</span>
-                </div>
-                <a href="dashboard.html" class="btn btn-outline-secondary btn-sm btn-booking">
-                  Lihat Denah Area
-                </a>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
+                <!-- 3 Statistik Kolom Rata Tengah -->
+                <div class="pola-b-stats-row">
+                  <div class="pola-b-stat-col">
+                    <div class="pola-b-stat-circle" aria-hidden="true">
+                      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                      </svg>
+                    </div>
+                    <span class="pola-b-stat-number">4+ Ruangan</span>
+                    <p class="pola-b-stat-label">Diskusi, Aula Mini, &amp; Hot Desk</p>
+                  </div>
 
-      <!-- 4. Section Galeri (Bootstrap Carousel) -->
-      <section id="galeri" class="py-5" style="max-width: var(--lebar); margin: 0 auto; padding-left: 16px; padding-right: 16px;">
-        <div class="section-heading-wrap">
-          <h2 class="section-title">Galeri Teras JTI</h2>
-          <p class="section-subtitle">
-            Sekilas pandang fasilitas modern dan aktivitas kolaboratif di lingkungan Jurusan Teknologi Informasi.
-          </p>
-        </div>
+                  <div class="pola-b-stat-col">
+                    <div class="pola-b-stat-circle" aria-hidden="true">
+                      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                      </svg>
+                    </div>
+                    <span class="pola-b-stat-number">50+ Kapasitas</span>
+                    <p class="pola-b-stat-label">Daya Tampung Nyaman &amp; AC</p>
+                  </div>
 
-        <div class="galeri-carousel-wrap">
-          <div id="carouselGaleriTeras" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselGaleriTeras" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselGaleriTeras" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <div class="pola-b-stat-col">
+                    <div class="pola-b-stat-circle" aria-hidden="true">
+                      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                      </svg>
+                    </div>
+                    <span class="pola-b-stat-number">08:00 - 16:00</span>
+                    <p class="pola-b-stat-label">Layanan Senin - Jumat</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Kolom Kanan: 3 Kartu Slate-Blue Bertumpuk -->
+              <div class="pola-b-cards-stack">
+                <!-- Kartu 1 -->
+                <article class="pola-b-card">
+                  <div class="pola-b-tile-icon" aria-hidden="true">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8" y1="2" x2="8" y2="6"/>
+                      <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                  </div>
+                  <div class="pola-b-card-body">
+                    <h3>Anti-Jadwal Bentrok</h3>
+                    <p>Pengecekan slot per jam realtime memungkinkan pemilihan waktu transparan tanpa saling berebut ruangan.</p>
+                  </div>
+                </article>
+
+                <!-- Kartu 2 -->
+                <article class="pola-b-card">
+                  <div class="pola-b-tile-icon" aria-hidden="true">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                    </svg>
+                  </div>
+                  <div class="pola-b-card-body">
+                    <h3>Booking Mandiri Cepat</h3>
+                    <p>Ruang diskusi gratis dapat dikonfirmasi seketika oleh mahasiswa tanpa menunggu birokrasi perizinan berbelit.</p>
+                  </div>
+                </article>
+
+                <!-- Kartu 3 -->
+                <article class="pola-b-card">
+                  <div class="pola-b-tile-icon" aria-hidden="true">
+                    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                      <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                      <line x1="1" y1="10" x2="23" y2="10"/>
+                    </svg>
+                  </div>
+                  <div class="pola-b-card-body">
+                    <h3>Sistem DP QRIS Aman</h3>
+                    <p>Dukungan pembayaran uang muka fleksibel untuk Aula Mini seminar dilengkapi timer countdown 24 jam.</p>
+                  </div>
+                </article>
+              </div>
             </div>
+          </div>
+        </section>
 
-            <div class="carousel-inner">
-              <div class="carousel-item active" data-bs-interval="4000">
+        <!-- ==================================================================
+             POLA D: BARIS 3 KARTU CAMPURAN (1 Lebar Slate-Blue + 2 Foto Cover)
+             ================================================================== -->
+        <section id="fasilitas" class="layout-container section-spacer">
+          <div class="layout-column-content">
+            <div class="pola-d-grid">
+              <!-- Kartu 1: Lebar Slate-Blue -->
+              <article class="pola-d-card pola-d-card-wide">
+                <div>
+                  <h3>Katalog Ruangan Kampus</h3>
+                  <p>
+                    Fasilitas belajar representatif yang dilengkapi Wi-Fi berkecepatan tinggi, proyektor HDMI, papan tulis, dan pendingin udara.
+                  </p>
+                </div>
+                <div class="pola-d-action">
+                  <a href="dashboard.html" class="btn-pill btn-pill-navy">
+                    Buka Katalog &rarr;
+                  </a>
+                </div>
+              </article>
+
+              <!-- Kartu 2: Foto Ruang Diskusi -->
+              <article class="pola-d-card pola-d-card-photo">
                 <img
                   src="assets/images/tempat.jpeg"
-                  class="d-block w-100"
-                  alt="Suasana Ruang Diskusi Teras JTI"
+                  alt="Ruang Diskusi Teras JTI"
+                  class="pola-d-photo-img"
+                  loading="lazy"
+                  width="800"
+                  height="450"
                 />
-                <div class="carousel-caption d-none d-md-block text-white">
-                  <h4 class="fw-bold mb-1">Ruang Diskusi Mahasiswa</h4>
-                  <p class="small mb-0">Dilengkapi fasilitas proyektor dan koneksi internet cepat untuk presentasi tugas akhir.</p>
+                <div class="pola-d-photo-overlay"></div>
+
+                <div class="pola-d-circle-icon" aria-hidden="true">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                  </svg>
+                </div>
+
+                <div class="pola-d-photo-bottom">
+                  <h3>Ruang Diskusi</h3>
+                  <p>Gratis 100% untuk kerja kelompok 6-8 orang &amp; bimbingan akademik.</p>
+                </div>
+              </article>
+
+              <!-- Kartu 3: Foto Aula Mini -->
+              <article class="pola-d-card pola-d-card-photo">
+                <img
+                  src="assets/images/aulamini.webp"
+                  alt="Aula Mini Teras JTI"
+                  class="pola-d-photo-img"
+                  loading="lazy"
+                  width="474"
+                  height="276"
+                />
+                <div class="pola-d-photo-overlay"></div>
+
+                <div class="pola-d-circle-icon" aria-hidden="true">
+                  <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"/>
+                  </svg>
+                </div>
+
+                <div class="pola-d-photo-bottom">
+                  <h3>Aula Mini</h3>
+                  <p>Kapasitas 15-20 orang untuk seminar mini, workshop, &amp; rapat pleno.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             POLA C: PANEL CAROUSEL KARTU PORTRAIT
+             ================================================================== -->
+        <section id="galeri" class="layout-container section-spacer">
+          <div class="pola-c-panel">
+            <!-- Header 2 Sisi -->
+            <div class="pola-c-header">
+              <h2 class="pola-c-heading">Dokumentasi &amp; Galeri Fasilitas</h2>
+              <p class="pola-c-header-desc">
+                Suasana ruang belajar modern, ber-AC, dan fasilitas kolaborasi civitas akademika Jurusan Teknologi Informasi Politeknik Negeri Jember.
+              </p>
+            </div>
+
+            <!-- Rail Carousel 4 Kartu Portrait -->
+            <div class="pola-c-carousel-rail" id="polaCCarouselRail" tabindex="0" aria-label="Koleksi Galeri Fasilitas">
+              <!-- Kartu 1 -->
+              <article class="pola-c-card">
+                <img
+                  src="assets/images/tempat.jpeg"
+                  alt="Ruang Diskusi Utama"
+                  class="pola-c-card-img"
+                  loading="lazy"
+                  width="400"
+                  height="520"
+                />
+                <div class="pola-c-card-overlay"></div>
+                <span class="pola-c-card-badge">Lantai 1</span>
+                <div class="pola-c-card-bottom">
+                  <span class="pola-c-card-meta">Kapasitas 8 Orang &bull; Gratis</span>
+                  <h3 class="pola-c-card-title">Ruang Diskusi A</h3>
+                </div>
+              </article>
+
+              <!-- Kartu 2 -->
+              <article class="pola-c-card">
+                <img
+                  src="assets/images/aulamini.webp"
+                  alt="Aula Mini Seminar"
+                  class="pola-c-card-img"
+                  loading="lazy"
+                  width="400"
+                  height="520"
+                />
+                <div class="pola-c-card-overlay"></div>
+                <span class="pola-c-card-badge">Full AC</span>
+                <div class="pola-c-card-bottom">
+                  <span class="pola-c-card-meta">Kapasitas 20 Orang &bull; Sound System</span>
+                  <h3 class="pola-c-card-title">Aula Mini Seminar</h3>
+                </div>
+              </article>
+
+              <!-- Kartu 3 -->
+              <article class="pola-c-card">
+                <img
+                  src="assets/images/tempat.jpeg"
+                  alt="Hot Desk & Co-Working Area"
+                  class="pola-c-card-img"
+                  loading="lazy"
+                  width="400"
+                  height="520"
+                  style="object-position: 80% center;"
+                />
+                <div class="pola-c-card-overlay"></div>
+                <span class="pola-c-card-badge">Walk-in</span>
+                <div class="pola-c-card-bottom">
+                  <span class="pola-c-card-meta">Individual Desk &bull; Stop Kontak</span>
+                  <h3 class="pola-c-card-title">Hot Desk Corner</h3>
+                </div>
+              </article>
+
+              <!-- Kartu 4 -->
+              <article class="pola-c-card">
+                <img
+                  src="assets/images/tempat.jpeg"
+                  alt="Ruang Diskusi B"
+                  class="pola-c-card-img"
+                  loading="lazy"
+                  width="400"
+                  height="520"
+                  style="object-position: 20% center;"
+                />
+                <div class="pola-c-card-overlay"></div>
+                <span class="pola-c-card-badge">Free Wi-Fi</span>
+                <div class="pola-c-card-bottom">
+                  <span class="pola-c-card-meta">Kapasitas 6 Orang &bull; Proyektor</span>
+                  <h3 class="pola-c-card-title">Ruang Diskusi B</h3>
+                </div>
+              </article>
+            </div>
+
+            <!-- Baris Kontrol Bawah: Tombol Pill Kiri + Chevron Bulat Kanan -->
+            <div class="pola-c-controls">
+              <a href="dashboard.html" class="btn-pill btn-pill-navy">
+                Lihat Semua Ruangan &rarr;
+              </a>
+
+              <div class="pola-c-nav-buttons">
+                <button
+                  type="button"
+                  id="polaCPrevBtn"
+                  class="pola-c-circle-btn"
+                  aria-label="Slide sebelumnya"
+                >
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  id="polaCNextBtn"
+                  class="pola-c-circle-btn"
+                  aria-label="Slide berikutnya"
+                >
+                  <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             POLA E: HEADING + 3 LANGKAH BERURUT (ALUR RESERVASI)
+             ================================================================== -->
+        <section id="alur" class="layout-container section-spacer">
+          <div class="layout-column-content">
+            <h2 class="pola-e-heading">Alur Praktis Reservasi Ruangan</h2>
+
+            <div class="pola-e-grid">
+              <!-- Langkah 1 -->
+              <div class="pola-e-step">
+                <div class="pola-e-bracket" aria-hidden="true">1</div>
+                <div class="pola-e-body">
+                  <h3>Pilih Ruangan &amp; Slot Jam</h3>
+                  <p>Buka katalog ruangan dan periksa ketersediaan jadwal pada kalender harian secara realtime tanpa bentrok.</p>
                 </div>
               </div>
 
-              <div class="carousel-item" data-bs-interval="4000">
-                <img
-                  src="assets/images/aulamini.webp"
-                  class="d-block w-100"
-                  alt="Fasilitas Aula Mini Teras JTI"
-                />
-                <div class="carousel-caption d-none d-md-block text-white">
-                  <h4 class="fw-bold mb-1">Aula Mini Representatif</h4>
-                  <p class="small mb-0">Cocok untuk workshop, sharing session, dan pelatihan divisi organisasi kampus.</p>
+              <!-- Langkah 2 -->
+              <div class="pola-e-step">
+                <div class="pola-e-bracket" aria-hidden="true">2</div>
+                <div class="pola-e-body">
+                  <h3>Lengkapi Formulir Booking</h3>
+                  <p>Isi identitas nama peminjam, jumlah peserta, serta keperluan belajar kelompok atau agenda himpunan.</p>
+                </div>
+              </div>
+
+              <!-- Langkah 3 -->
+              <div class="pola-e-step">
+                <div class="pola-e-bracket" aria-hidden="true">3</div>
+                <div class="pola-e-body">
+                  <h3>Terima Tiket / Bayar DP</h3>
+                  <p>Tiket digital langsung terbit untuk ruang diskusi gratis, atau selesaikan DP QRIS 24 jam untuk Aula Mini.</p>
                 </div>
               </div>
             </div>
-
-            <!-- Tombol Navigasi Carousel -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselGaleriTeras" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Sebelumnya</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselGaleriTeras" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Berikutnya</span>
-            </button>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- 5. Section Jam Operasional & Aturan -->
-      <section id="jadwal" class="py-5 bg-white border-top border-bottom">
-        <div style="max-width: var(--lebar); margin: 0 auto; padding-left: 16px; padding-right: 16px;">
-          <div class="section-heading-wrap">
-            <h2 class="section-title">Waktu Layanan &amp; Ketentuan</h2>
-            <p class="section-subtitle">
-              Patuhi aturan bersama demi kenyamanan seluruh civitas akademika Politeknik Negeri Jember.
-            </p>
+        <!-- ==================================================================
+             SECTION JADWAL & ATURAN (Bahasa Visual Selaras: Token, Radius, Warna)
+             ================================================================== -->
+        <section id="jadwal" class="layout-container section-spacer">
+          <div class="layout-column-content">
+            <div class="jadwal-aturan-grid">
+              <!-- Kolom 1: Jam Operasional -->
+              <div class="info-card" style="border-radius: var(--radius-card); border-color: var(--panel-border);">
+                <h3 style="color: var(--navy); font-size: 1.15rem; font-weight: 700;">
+                  Jam Operasional Layanan
+                </h3>
+                <table class="table table-sm table-bordered m-0 align-middle">
+                  <thead class="table-light">
+                    <tr>
+                      <th scope="col">Hari</th>
+                      <th scope="col">Jam Layanan</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="fw-medium">Senin - Kamis</td>
+                      <td>08:00 - 16:00 WIB</td>
+                      <td><span class="badge bg-success">Buka</span></td>
+                    </tr>
+                    <tr>
+                      <td class="fw-medium">Jumat</td>
+                      <td>08:00 - 15:30 WIB (Istirahat 11:30 - 13:00)</td>
+                      <td><span class="badge bg-success">Buka</span></td>
+                    </tr>
+                    <tr>
+                      <td class="fw-medium">Sabtu</td>
+                      <td>08:00 - 12:00 WIB</td>
+                      <td><span class="badge bg-warning text-dark">Khusus Agenda</span></td>
+                    </tr>
+                    <tr>
+                      <td class="fw-medium">Minggu &amp; Libur</td>
+                      <td>-</td>
+                      <td><span class="badge bg-danger">Tutup</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <small class="text-muted d-block mt-3">
+                  *Reservasi di luar jam di atas wajib mengajukan permohonan ke pengelola gedung JTI Polije.
+                </small>
+              </div>
+
+              <!-- Kolom 2: Tata Tertib -->
+              <div class="info-card" style="border-radius: var(--radius-card); border-color: var(--panel-border);">
+                <h3 style="color: var(--navy); font-size: 1.15rem; font-weight: 700;">
+                  Tata Tertib Penggunaan
+                </h3>
+                <ol class="m-0 ps-3 text-secondary lh-lg small">
+                  <li>Check-in tepat waktu sesuai dengan slot jam reservasi yang dipilih.</li>
+                  <li>Jumlah peserta di dalam ruangan dilarang melampaui batas kapasitas ruangan.</li>
+                  <li>Menjaga kebersihan meja, membuang sampah pada tempatnya, dan merapikan kursi.</li>
+                  <li>Dilarang merusak atau memindahkan perangkat elektronik (proyektor HDMI &amp; Wi-Fi).</li>
+                  <li>Konfirmasi pembatalan minimal 1 jam sebelum jadwal dimulai melalui menu Riwayat.</li>
+                </ol>
+              </div>
+            </div>
           </div>
+        </section>
 
-          <div class="jadwal-aturan-grid">
-            <!-- Kolom 1: Jam Operasional -->
-            <div class="info-card">
-              <h3>Jam Operasional Layanan</h3>
-              <table class="table table-sm table-bordered m-0 align-middle">
-                <thead class="table-light">
-                  <tr>
-                    <th scope="col">Hari</th>
-                    <th scope="col">Jam Layanan</th>
-                    <th scope="col">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="fw-medium">Senin - Kamis</td>
-                    <td>08:00 - 16:00 WIB</td>
-                    <td><span class="badge bg-success">Buka</span></td>
-                  </tr>
-                  <tr>
-                    <td class="fw-medium">Jumat</td>
-                    <td>08:00 - 15:30 WIB (Istirahat 11:30 - 13:00)</td>
-                    <td><span class="badge bg-success">Buka</span></td>
-                  </tr>
-                  <tr>
-                    <td class="fw-medium">Sabtu</td>
-                    <td>08:00 - 12:00 WIB</td>
-                    <td><span class="badge bg-warning text-dark">Khusus Agenda</span></td>
-                  </tr>
-                  <tr>
-                    <td class="fw-medium">Minggu &amp; Libur Nasional</td>
-                    <td>-</td>
-                    <td><span class="badge bg-danger">Tutup</span></td>
-                  </tr>
-                </tbody>
-              </table>
-              <small class="text-muted d-block mt-3">
-                *Reservasi di luar jam di atas wajib mengajukan izin tertulis ke pihak pengelola gedung JTI.
+        <!-- ==================================================================
+             SECTION FAQ (Accordion Bootstrap 5.3 Bersih)
+             ================================================================== -->
+        <section id="faq" class="layout-container section-spacer">
+          <div class="layout-column-content">
+            <div class="section-heading-wrap text-center mb-4">
+              <h2 class="section-title" style="color: var(--navy); font-size: 1.5rem;">Pertanyaan Umum (FAQ)</h2>
+              <p class="section-subtitle">Jawaban cepat untuk hal-hal yang sering ditanyakan seputar layanan Teras JTI.</p>
+            </div>
+
+            <div class="accordion" id="accordionFaqTeras">
+              <!-- Item 1 -->
+              <div class="accordion-item mb-2 border rounded-3 overflow-hidden">
+                <h2 class="accordion-header" id="headingOne">
+                  <button
+                    class="accordion-button collapsed fw-semibold text-dark bg-white"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne"
+                    aria-expanded="false"
+                    aria-controls="collapseOne"
+                  >
+                    Siapa saja yang berhak menggunakan fasilitas Teras JTI?
+                  </button>
+                </h2>
+                <div
+                  id="collapseOne"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionFaqTeras"
+                >
+                  <div class="accordion-body text-secondary small">
+                    Seluruh mahasiswa, dosen, dan staf di lingkungan Jurusan Teknologi Informasi Politeknik Negeri Jember berhak menggunakan fasilitas ini dengan melakukan pemesanan jadwal terlebih dahulu. Mahasiswa jurusan lain dapat menggunakannya untuk agenda kolaborasi lintas jurusan.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 2 -->
+              <div class="accordion-item mb-2 border rounded-3 overflow-hidden">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button
+                    class="accordion-button collapsed fw-semibold text-dark bg-white"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                  >
+                    Apakah reservasi Ruang Diskusi dipungut biaya?
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingTwo"
+                  data-bs-parent="#accordionFaqTeras"
+                >
+                  <div class="accordion-body text-secondary small">
+                    Tidak. Ruang Diskusi dapat digunakan secara <strong>GRATIS 100%</strong> untuk keperluan belajar kelompok, bimbingan tugas akhir, dan riset akademik mahasiswa aktif Polije.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 3 -->
+              <div class="accordion-item mb-2 border rounded-3 overflow-hidden">
+                <h2 class="accordion-header" id="headingThree">
+                  <button
+                    class="accordion-button collapsed fw-semibold text-dark bg-white"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    Bagaimana mekanisme pembayaran DP untuk Aula Mini?
+                  </button>
+                </h2>
+                <div
+                  id="collapseThree"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingThree"
+                  data-bs-parent="#accordionFaqTeras"
+                >
+                  <div class="accordion-body text-secondary small">
+                    Untuk Aula Mini dikenakan uang muka (DP) sebesar Rp 50.000 guna menahan slot jadwal. Pengguna dapat memilih pembayaran via scan QRIS atau transfer ke rekening resmi pengelola di halaman pembayaran.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Item 4 -->
+              <div class="accordion-item mb-2 border rounded-3 overflow-hidden">
+                <h2 class="accordion-header" id="headingFour">
+                  <button
+                    class="accordion-button collapsed fw-semibold text-dark bg-white"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour"
+                    aria-expanded="false"
+                    aria-controls="collapseFour"
+                  >
+                    Bagaimana jika kami terlambat hadir atau ingin membatalkan?
+                  </button>
+                </h2>
+                <div
+                  id="collapseFour"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingFour"
+                  data-bs-parent="#accordionFaqTeras"
+                >
+                  <div class="accordion-body text-secondary small">
+                    Toleransi keterlambatan adalah 15 menit dari jam mulai. Jika berhalangan hadir, silakan lakukan pembatalan melalui menu Riwayat agar ruangan dapat dimanfaatkan mahasiswa lain.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================================
+             SECTION KONTAK & LOKASI
+             ================================================================== -->
+        <section id="kontak" class="layout-container section-spacer">
+          <div class="layout-column-content">
+            <div class="kontak-grid">
+              <div class="lokasi-box" style="border-radius: var(--radius-card); border-color: var(--panel-border);">
+                <h3 class="fs-5 fw-bold mb-3" style="color: var(--navy);">Alamat Lokasi</h3>
+                <p class="text-secondary small mb-3">
+                  <strong>Gedung Jurusan Teknologi Informasi (Lantai 1)</strong><br />
+                  Politeknik Negeri Jember<br />
+                  Jl. Mastrip PO BOX 164, Jember, Jawa Timur 68101
+                </p>
+                <div class="p-3 bg-light rounded-3 border text-muted small">
+                  <strong>Petunjuk Arah:</strong> Teras JTI berada di sisi barat lobi utama Gedung JTI Polije, tepat di samping laboratorium multimedia dan area cafe.
+                </div>
+              </div>
+
+              <div class="lokasi-box" style="border-radius: var(--radius-card); border-color: var(--panel-border);">
+                <h3 class="fs-5 fw-bold mb-3" style="color: var(--navy);">Kontak Bantuan</h3>
+                <ul class="list-unstyled text-secondary small m-0 d-flex flex-column gap-2">
+                  <li><strong>Email:</strong> terasjti@polije.ac.id</li>
+                  <li><strong>WhatsApp Resepsionis:</strong> +62 812-3456-7890</li>
+                  <li><strong>Instagram:</strong> @terasjti.polije</li>
+                  <li><strong>Jam Layanan:</strong> Senin - Jumat (08:00 - 16:00 WIB)</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Banner CTA Ajakan Reservasi -->
+            <div class="cta-banner" style="background: var(--navy); border-radius: var(--radius-card); margin-top: 32px;">
+              <h2>Siap Belajar &amp; Berkolaborasi di Teras JTI?</h2>
+              <p>
+                Periksa ketersediaan ruangan hari ini dan booking jadwalmu dalam hitungan menit secara mandiri.
+              </p>
+              <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="dashboard.html" class="btn-pill btn-pill-white">
+                  Pesan Tempat Sekarang &rarr;
+                </a>
+                <a href="login.html" class="btn-pill btn-pill-outline-white">
+                  Masuk Akun Mahasiswa
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- ====================================================================
+           POLA F: FOOTER NAVY (Sudut Atas Membulat Radius 24px)
+           ==================================================================== -->
+      <footer class="pola-footer">
+        <div class="layout-container">
+          <div class="pola-footer-grid">
+            <!-- Kolom 1: Brand & Keterangan -->
+            <div class="pola-footer-col">
+              <h3 class="pola-footer-brand-title">Teras JTI</h3>
+              <p class="pola-footer-desc">
+                Pusat kolaborasi akademik dan fasilitas co-working space Jurusan Teknologi Informasi Politeknik Negeri Jember.
+              </p>
+              <small class="text-white-50">
+                Gedung JTI Lt. 1 &bull; Jl. Mastrip PO BOX 164 Jember
               </small>
             </div>
 
-            <!-- Kolom 2: Tata Tertib -->
-            <div class="info-card">
-              <h3>Tata Tertib Penggunaan</h3>
-              <ol class="m-0 ps-3 text-secondary lh-lg small">
-                <li>Check-in tepat waktu sesuai dengan slot jam reservasi yang dipilih.</li>
-                <li>Jumlah peserta di dalam ruangan dilarang melampaui batas maksimal kapasitas.</li>
-                <li>Menjaga kebersihan meja, membuang sampah pada tempatnya, dan merapikan kembali kursi.</li>
-                <li>Dilarang merusak atau memindahkan perangkat elektronik (proyektor, router Wi-Fi, kabel HDMI).</li>
-                <li>Konfirmasi pembatalan reservasi minimal 1 jam sebelum jadwal dimulai agar slot dapat digunakan mahasiswa lain.</li>
-              </ol>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 6. Section FAQ (Bootstrap Accordion) -->
-      <section id="faq" class="py-5" style="max-width: var(--lebar); margin: 0 auto; padding-left: 16px; padding-right: 16px;">
-        <div class="section-heading-wrap">
-          <h2 class="section-title">Frequently Asked Questions</h2>
-          <p class="section-subtitle">
-            Jawaban cepat untuk hal-hal yang sering ditanyakan seputar layanan Teras JTI.
-          </p>
-        </div>
-
-        <div class="accordion" id="accordionFaqTeras">
-          <!-- Item 1 -->
-          <div class="accordion-item mb-2 border rounded overflow-hidden">
-            <h2 class="accordion-header" id="headingOne">
-              <button
-                class="accordion-button collapsed fw-semibold text-dark bg-white"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseOne"
-                aria-expanded="false"
-                aria-controls="collapseOne"
-              >
-                Siapa saja yang berhak menggunakan fasilitas Teras JTI?
-              </button>
-            </h2>
-            <div
-              id="collapseOne"
-              class="accordion-collapse collapse"
-              aria-labelledby="headingOne"
-              data-bs-parent="#accordionFaqTeras"
-            >
-              <div class="accordion-body text-secondary small">
-                Seluruh mahasiswa, dosen, dan staf di lingkungan Jurusan Teknologi Informasi Politeknik Negeri Jember berhak menggunakan fasilitas ini dengan melakukan pemesanan jadwal terlebih dahulu. Mahasiswa jurusan lain dapat menggunakannya untuk agenda kolaborasi lintas jurusan dengan persetujuan pengelola.
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="accordion-item mb-2 border rounded overflow-hidden">
-            <h2 class="accordion-header" id="headingTwo">
-              <button
-                class="accordion-button collapsed fw-semibold text-dark bg-white"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseTwo"
-                aria-expanded="false"
-                aria-controls="collapseTwo"
-              >
-                Apakah reservasi Ruang Diskusi dipungut biaya?
-              </button>
-            </h2>
-            <div
-              id="collapseTwo"
-              class="accordion-collapse collapse"
-              aria-labelledby="headingTwo"
-              data-bs-parent="#accordionFaqTeras"
-            >
-              <div class="accordion-body text-secondary small">
-                Tidak. Ruang Diskusi dapat digunakan secara <strong>GRATIS 100%</strong> untuk keperluan belajar kelompok dan bimbingan tugas mahasiswa aktif Polije.
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="accordion-item mb-2 border rounded overflow-hidden">
-            <h2 class="accordion-header" id="headingThree">
-              <button
-                class="accordion-button collapsed fw-semibold text-dark bg-white"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseThree"
-                aria-expanded="false"
-                aria-controls="collapseThree"
-              >
-                Bagaimana mekanisme pembayaran DP untuk Aula Mini?
-              </button>
-            </h2>
-            <div
-              id="collapseThree"
-              class="accordion-collapse collapse"
-              aria-labelledby="headingThree"
-              data-bs-parent="#accordionFaqTeras"
-            >
-              <div class="accordion-body text-secondary small">
-                Untuk Aula Mini dikenakan uang muka (DP) sebesar Rp 50.000 guna menahan slot jadwal kegiatan. Pengguna dapat memilih pembayaran melalui scan QRIS atau transfer ke rekening resmi pengelola, lalu mengunggah bukti bayar di halaman pembayaran.
-              </div>
-            </div>
-          </div>
-
-          <!-- Item 4 -->
-          <div class="accordion-item mb-2 border rounded overflow-hidden">
-            <h2 class="accordion-header" id="headingFour">
-              <button
-                class="accordion-button collapsed fw-semibold text-dark bg-white"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#collapseFour"
-                aria-expanded="false"
-                aria-controls="collapseFour"
-              >
-                Bagaimana jika kami terlambat hadir atau ingin membatalkan?
-              </button>
-            </h2>
-            <div
-              id="collapseFour"
-              class="accordion-collapse collapse"
-              aria-labelledby="headingFour"
-              data-bs-parent="#accordionFaqTeras"
-            >
-              <div class="accordion-body text-secondary small">
-                Toleransi keterlambatan adalah 15 menit dari jam mulai. Jika berhalangan hadir, silakan lakukan pembatalan melalui menu Riwayat agar ruangan dapat dialihkan kepada rekan mahasiswa yang sedang membutuhkan.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 7. Section Kontak & Lokasi -->
-      <section id="kontak" class="py-5 bg-white border-top">
-        <div style="max-width: var(--lebar); margin: 0 auto; padding-left: 16px; padding-right: 16px;">
-          <div class="section-heading-wrap">
-            <h2 class="section-title">Hubungi Kami</h2>
-            <p class="section-subtitle">
-              Kunjungi kami langsung di Gedung Jurusan Teknologi Informasi atau hubungi kanal layanan resmi kami.
-            </p>
-          </div>
-
-          <div class="kontak-grid">
-            <div class="lokasi-box">
-              <h3 class="fs-5 fw-bold mb-3">Alamat Lokasi</h3>
-              <p class="text-secondary small mb-3">
-                <strong>Gedung Jurusan Teknologi Informasi (Lantai 1)</strong><br />
-                Politeknik Negeri Jember<br />
-                Jl. Mastrip PO BOX 164, Jember, Jawa Timur 68101
-              </p>
-              <div class="p-3 bg-light rounded border text-muted small">
-                <strong>Petunjuk Arah:</strong> Teras JTI berada di sisi barat lobi utama Gedung JTI, tepat di samping laboratorium komputer multimedia dan mini cafe.
-              </div>
+            <!-- Kolom 2: Tautan Halaman -->
+            <div class="pola-footer-col">
+              <h4>Navigasi Layanan</h4>
+              <ul class="pola-footer-links">
+                <li><a href="dashboard.html">Katalog Reservasi</a></li>
+                <li><a href="ketersediaan.html">Cek Ketersediaan</a></li>
+                <li><a href="riwayat.html">Riwayat Pemesanan</a></li>
+                <li><a href="about/tentang.html">Dokumentasi Tim</a></li>
+              </ul>
             </div>
 
-            <div class="lokasi-box">
-              <h3 class="fs-5 fw-bold mb-3">Kontak Bantuan</h3>
-              <ul class="list-unstyled text-secondary small m-0 d-flex flex-column gap-2">
-                <li><strong>Email:</strong> terasjti@polije.ac.id</li>
-                <li><strong>WhatsApp Resepsionis:</strong> +62 812-3456-7890</li>
-                <li><strong>Instagram:</strong> @terasjti.polije</li>
-                <li><strong>Layanan:</strong> Senin - Jumat (08:00 - 16:00 WIB)</li>
+            <!-- Kolom 3: Akun & Bantuan -->
+            <div class="pola-footer-col">
+              <h4>Akun &amp; Bantuan</h4>
+              <ul class="pola-footer-links">
+                <li><a href="login.html">Masuk Mahasiswa</a></li>
+                <li><a href="registrasi.html">Daftar Akun Baru</a></li>
+                <li><a href="#faq">Pusat Bantuan FAQ</a></li>
+                <li><a href="https://wa.me/6281234567890">Resepsionis WhatsApp</a></li>
               </ul>
             </div>
           </div>
 
-          <!-- CTA Banner Final -->
-          <div class="cta-banner">
-            <h2>Ingin Mengadakan Diskusi atau Belajar Bersama?</h2>
-            <p>
-              Periksa ketersediaan ruangan hari ini dan booking jadwalmu dalam hitungan menit tanpa ribet.
-            </p>
-            <div class="d-flex justify-content-center gap-3 flex-wrap">
-              <a href="dashboard.html" class="btn btn-cyan-terang px-4 py-2 fw-bold">
-                Pesan Tempat Sekarang &rarr;
-              </a>
-              <a href="login.html" class="btn btn-outline-light px-4 py-2 fw-semibold">
-                Masuk Akun Mahasiswa
-              </a>
-            </div>
+          <!-- Bottom Footer -->
+          <div class="pola-footer-bottom">
+            <span>&copy; 2026 Teras JTI &middot; Politeknik Negeri Jember</span>
+            <span>
+              Dikembangkan oleh <strong>Kelompok 4 (NoBugNoCry)</strong> &mdash; Golongan C D4 Teknik Informatika
+            </span>
           </div>
         </div>
-      </section>
-    </main>
+      </footer>
+    </div>
 
-    <!-- Footer Terpadu -->
-    <footer class="bg-light border-top py-4 text-center text-muted small">
-      <div style="max-width: var(--lebar); margin: 0 auto; padding-left: 16px; padding-right: 16px;">
-        <p class="fw-semibold text-dark mb-1">
-          &copy; 2026 Teras JTI &middot; Politeknik Negeri Jember
-        </p>
-        <p class="mb-2">
-          Dikembangkan oleh <strong>Kelompok 4 (NoBugNoCry)</strong> &mdash; Golongan C, Program Studi D4 Teknik Informatika.
-        </p>
-        <div class="d-flex justify-content-center gap-3">
-          <a href="#beranda" class="text-decoration-none text-muted">Kembali ke Atas</a>
-          &middot;
-          <a href="dashboard.html" class="text-decoration-none text-muted">Katalog Reservasi</a>
-          &middot;
-          <a href="about/tentang.html" class="text-decoration-none text-muted">Dokumentasi Tim</a>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Bootstrap 5 JS Bundle & Custom JS -->
+    <!-- Bootstrap 5 JS Bundle & Custom Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/components/navbar.js"></script>
+    <script src="assets/js/components/carousel-pola-c.js"></script>
     <script src="assets/js/main.js"></script>
   </body>
 </html>
