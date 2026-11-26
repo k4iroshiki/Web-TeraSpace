@@ -64,10 +64,19 @@ header .kembali:hover {
 .topbar {
   background-color: #ffffff;
   border-bottom: 1px solid #e5e7eb;
-  padding: 24px 36px;
+  padding: 0 var(--gutter);
+}
+
+/* Wrapper inner membatasi lebar konten topbar agar tidak meregang
+   di layar ultrawide, sejajar dengan lebar konten halaman (--lebar). */
+.topbar-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  max-width: var(--lebar);
+  margin: 0 auto;
+  padding: 14px 0;
 }
 
 .topbar-kiri {
@@ -348,18 +357,67 @@ body:has(main + nav) {
 /* =========================================
    HALAMAN PROFIL
    ========================================= */
-.profil-page {
-  padding: 28px 24px 48px;
+
+/*
+ * Task #1: Override main.profil-page keluar dari max-width global (960px).
+ * main global punya max-width: var(--lebar) = 960px. Halaman profil butuh
+ * full-width seperti landing page, jadi kita reset max-width dan padding
+ * di sini, lalu atur centering lewat .profil-container.
+ */
+main.profil-page {
+  max-width: 100%;
+  padding: 0;
 }
 
+/*
+ * Task #2: .profil-container sebagai pusat centering konten profil.
+ * Lebar 1200px agar konten terasa lega di desktop, dengan padding
+ * horizontal 32px agar tidak mentok di viewport <1264px.
+ */
 .profil-container {
-  max-width: 760px;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 36px 32px 56px;
+}
+
+/*
+ * Task #3 & #4: .topbar dan .topbar-inner diselaraskan ke lebar 1200px.
+ * Padding .topbar diganti ke nilai tetap 0 32px agar tidak terpengaruh
+ * --gutter yang di layar lebar bisa mencapai 200px+ dan membuat header
+ * terasa mengerut.
+ */
+.topbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 0 32px;
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 0;
+}
+
+/*
+ * Task #5: Layout dua kolom desktop di dalam .profil-container.
+ * Sidebar kiri (user card, 320px tetap) + konten kanan (menu list, sisanya).
+ * Di layar <768px kembali ke satu kolom.
+ */
+.profil-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 28px;
+  align-items: start;
 }
 
 .profil-heading {
-  margin: 0 0 20px;
-  font-size: 1.5rem;
+  margin: 0 0 24px;
+  font-size: 1.75rem;
   font-weight: 700;
   color: #111827;
 }
@@ -370,23 +428,24 @@ body:has(main + nav) {
   border-radius: 12px;
 }
 
-/* Kartu Info Pengguna */
+/* Sidebar: Kartu Info Pengguna (kolom kiri) */
 .profil-user-card {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 18px;
-  padding: 20px 24px;
-  margin-bottom: 18px;
+  gap: 14px;
+  padding: 28px 24px;
+  text-align: center;
 }
 
 .profil-avatar {
-  width: 56px;
-  height: 56px;
+  width: 72px;
+  height: 72px;
   border-radius: 999px;
   background-color: #dbeafe;
   color: #2563eb;
-  font-weight: 600;
-  font-size: 1.05rem;
+  font-weight: 700;
+  font-size: 1.3rem;
   display: grid;
   place-items: center;
   flex-shrink: 0;
@@ -394,18 +453,18 @@ body:has(main + nav) {
 
 .profil-nama {
   margin: 0 0 4px;
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: #111827;
 }
 
 .profil-email {
   margin: 0;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: #6b7280;
 }
 
-/* Kartu Daftar Menu */
+/* Konten kanan: Kartu Daftar Menu */
 .profil-menu-list {
   display: flex;
   flex-direction: column;
@@ -416,12 +475,13 @@ body:has(main + nav) {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
+  padding: 18px 24px;
   text-decoration: none;
   color: #1f2937;
   font-size: 0.95rem;
   font-weight: 500;
   border-bottom: 1px solid #e5e7eb;
+  transition: background-color 0.15s ease;
 }
 
 .profil-menu-item:last-child {
@@ -433,8 +493,8 @@ body:has(main + nav) {
 }
 
 .profil-chevron {
-  color: #6b7280;
-  font-size: 1.25rem;
+  color: #9ca3af;
+  font-size: 1.35rem;
   line-height: 1;
 }
 
@@ -444,6 +504,41 @@ body:has(main + nav) {
 
 .profil-logout:hover {
   background-color: #fef2f2;
+}
+
+/* Responsif: tablet dan mobile — kembali ke satu kolom */
+@media (max-width: 768px) {
+  .profil-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .profil-user-card {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    padding: 20px 20px;
+  }
+
+  .profil-container {
+    padding: 24px 20px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .profil-user-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .profil-user-card .btn {
+    width: 100%;
+  }
+
+  .profil-container {
+    padding: 20px 16px 32px;
+  }
 }
 
 /* =========================================
