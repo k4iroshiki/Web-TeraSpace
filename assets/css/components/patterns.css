@@ -1,0 +1,888 @@
+/* ==========================================================================
+   SPESIFIKASI POLA LAYOUT — TERAS JTI (KELOMPOK 4 NOBUGNOCRY)
+   Pola 0: Navbar Pill
+   Pola A: Hero Foto Cover Penuh
+   Pola B: Intro 2 Kolom (Teks + 3 Kartu Fitur)
+   Pola C: Panel Carousel Kartu Portrait
+   Pola D: Baris 3 Kartu Campuran (1 Lebar + 2 Foto)
+   Pola E: Heading + 3 Langkah Berurut
+   Pola F: Footer Navy Rounded
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. Global Canvas & Utility
+   -------------------------------------------------------------------------- */
+.layout-wrapper {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #ffffff;
+}
+
+.layout-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: clamp(16px, 3vw, 32px);
+  padding-right: clamp(16px, 3vw, 32px);
+}
+
+.layout-column-content {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.section-spacer {
+  margin-top: var(--section-gap, clamp(3.5rem, 5.5vw, 4.75rem));
+}
+
+.section-spacer-bottom {
+  margin-bottom: var(--section-gap, clamp(3.5rem, 5.5vw, 4.75rem));
+}
+
+/* Tombol Pill Standar Spesifikasi (Target Sentuh Min 44px) */
+.btn-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 10px 22px;
+  border-radius: var(--radius-pill, 9999px);
+  font-family: var(--font-isi, "Poppins", sans-serif);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.btn-pill:focus-visible {
+  outline: 2px solid var(--navy, #1F2A44);
+  outline-offset: 2px;
+}
+
+.btn-pill-navy {
+  background-color: var(--navy, #1F2A44);
+  color: #ffffff;
+  border-color: var(--navy, #1F2A44);
+}
+
+.btn-pill-navy:hover {
+  background-color: var(--navy-hover, #151D30);
+  border-color: var(--navy-hover, #151D30);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-pill-white {
+  background-color: #ffffff;
+  color: var(--navy, #1F2A44);
+  border-color: #ffffff;
+}
+
+.btn-pill-white:hover {
+  background-color: #f1f5f9;
+  color: var(--navy-hover, #151D30);
+  transform: translateY(-1px);
+}
+
+.btn-pill-outline-white {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+}
+
+.btn-pill-outline-white:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-pill-outline-navy {
+  background-color: transparent;
+  color: var(--navy, #1F2A44);
+  border: 1px solid var(--navy, #1F2A44);
+}
+
+.btn-pill-outline-navy:hover {
+  background-color: rgba(31, 42, 68, 0.08);
+  color: var(--navy-hover, #151D30);
+}
+
+/* --------------------------------------------------------------------------
+   POLA 0: NAVBAR PILL
+   -------------------------------------------------------------------------- */
+.pola-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  background-color: #ffffff;
+  min-height: 56px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.pola-navbar .navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 56px;
+}
+
+.pola-navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--navy, #1F2A44);
+  font-family: var(--font-judul, "Montserrat", sans-serif);
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.pola-navbar-brand img {
+  width: 28px;
+  height: 28px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.pola-navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pola-navbar-link {
+  color: #4b5563;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 6px 4px;
+  border-radius: 4px;
+  transition: color 0.15s ease;
+}
+
+.pola-navbar-link:hover,
+.pola-navbar-link.active {
+  color: var(--navy, #1F2A44);
+  font-weight: 600;
+}
+
+.pola-navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   POLA A: HERO FOTO FULL
+   -------------------------------------------------------------------------- */
+.pola-hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(400px, 45vw, 470px);
+  border-radius: var(--radius-panel, 24px);
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  background-color: #0f172a;
+}
+
+.pola-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.pola-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.92) 0%,
+    rgba(15, 23, 42, 0.55) 45%,
+    rgba(15, 23, 42, 0.25) 100%
+  );
+  z-index: 2;
+}
+
+.pola-hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  padding: clamp(24px, 4.5vw, 48px);
+  padding-left: clamp(20px, 6vw, 64px);
+  max-width: 820px;
+}
+
+.pola-hero-title-wrap {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.pola-hero-title {
+  margin: 0;
+  font-family: var(--font-judul, "Montserrat", sans-serif);
+  font-size: clamp(2.5rem, 6.5vw, 4.25rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+  background: linear-gradient(180deg, #ffffff 40%, rgba(255, 255, 255, 0.35) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.pola-hero-badge-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(6px);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill, 9999px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.pola-hero-desc {
+  margin: 0 0 20px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(0.925rem, 1.4vw, 1.05rem);
+  line-height: 1.55;
+  max-width: 460px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.pola-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+/* --------------------------------------------------------------------------
+   POLA B: INTRO 2 KOLOM (TEKS + KARTU FITUR)
+   -------------------------------------------------------------------------- */
+.pola-b-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: clamp(28px, 4.5vw, 56px);
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .pola-b-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+.pola-b-heading {
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  color: var(--navy, #1F2A44);
+  line-height: 1.25;
+  margin: 0 0 14px;
+}
+
+.pola-b-desc {
+  color: #4b5563;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  margin: 0 0 18px;
+  max-width: 480px;
+}
+
+.pola-b-socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.pola-b-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  background-color: rgba(31, 42, 68, 0.08);
+  color: var(--navy, #1F2A44);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.pola-b-social-link:hover {
+  background-color: var(--navy, #1F2A44);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.pola-b-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  padding-top: 18px;
+  border-top: 1px solid #e5e7eb;
+}
+
+@media (max-width: 480px) {
+  .pola-b-stats-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.pola-b-stat-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.pola-b-stat-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--navy, #1F2A44);
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  margin-bottom: 8px;
+}
+
+.pola-b-stat-number {
+  font-family: var(--font-judul, "Montserrat", sans-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--navy, #1F2A44);
+  margin-bottom: 2px;
+}
+
+.pola-b-stat-label {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* Kanan: 3 Kartu Bertumpuk */
+.pola-b-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pola-b-card {
+  background-color: var(--slate-blue, #5B6B8A);
+  border-radius: var(--radius-card, 16px);
+  padding: 14px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(91, 107, 138, 0.16);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pola-b-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(91, 107, 138, 0.25);
+}
+
+.pola-b-tile-icon {
+  width: 58px;
+  height: 58px;
+  min-width: 58px;
+  border-radius: var(--radius-tile, 12px);
+  background-color: #ffffff;
+  color: var(--navy, #1F2A44);
+  display: grid;
+  place-items: center;
+}
+
+.pola-b-card-body h3 {
+  margin: 0 0 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.pola-b-card-body p {
+  margin: 0;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+/* --------------------------------------------------------------------------
+   POLA D: BARIS 3 KARTU CAMPURAN (1 LEBAR + 2 FOTO)
+   -------------------------------------------------------------------------- */
+.pola-d-grid {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 920px) {
+  .pola-d-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pola-d-card {
+  border-radius: var(--radius-card, 16px);
+  overflow: hidden;
+  min-height: 270px;
+  position: relative;
+}
+
+/* Kartu 1: Lebar Slate-Blue */
+.pola-d-card-wide {
+  background-color: var(--slate-blue, #5B6B8A);
+  color: #ffffff;
+  padding: clamp(24px, 3.5vw, 32px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 14px rgba(91, 107, 138, 0.18);
+}
+
+.pola-d-card-wide h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px;
+}
+
+.pola-d-card-wide p {
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0;
+}
+
+.pola-d-card-wide .pola-d-action {
+  margin-top: 24px;
+  align-self: flex-start;
+}
+
+/* Kartu 2 & 3: Foto Cover */
+.pola-d-card-photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px;
+  color: #ffffff;
+  background-color: #0f172a;
+}
+
+.pola-d-photo-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.pola-d-photo-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.92) 0%,
+    rgba(15, 23, 42, 0.45) 55%,
+    rgba(15, 23, 42, 0.15) 100%
+  );
+  z-index: 2;
+}
+
+.pola-d-circle-icon {
+  position: relative;
+  z-index: 3;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.pola-d-photo-bottom {
+  position: relative;
+  z-index: 3;
+}
+
+.pola-d-photo-bottom h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 4px;
+}
+
+.pola-d-photo-bottom p {
+  font-size: 0.78rem;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   POLA C: PANEL CAROUSEL KARTU PORTRAIT
+   -------------------------------------------------------------------------- */
+.pola-c-panel {
+  width: 100%;
+  background-color: var(--panel-bg, #E9EAEF);
+  border-radius: var(--radius-panel, 24px);
+  padding: clamp(28px, 4vw, 44px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.pola-c-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 768px) {
+  .pola-c-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.pola-c-heading {
+  font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+  font-weight: 700;
+  color: var(--navy, #1F2A44);
+  margin: 0;
+}
+
+.pola-c-header-desc {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: #4b5563;
+  max-width: 380px;
+  margin: 0;
+}
+
+/* Carousel Rail */
+.pola-c-carousel-rail {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pola-c-carousel-rail {
+    scroll-behavior: auto;
+  }
+}
+
+.pola-c-carousel-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.pola-c-card {
+  position: relative;
+  flex: 0 0 calc(25% - 12px);
+  min-width: 190px;
+  aspect-ratio: 178 / 234;
+  border-radius: var(--radius-card, 16px);
+  overflow: hidden;
+  scroll-snap-align: start;
+  background-color: #0f172a;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px;
+  color: #ffffff;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 992px) {
+  .pola-c-card {
+    flex: 0 0 calc(33.333% - 11px);
+  }
+}
+
+@media (max-width: 640px) {
+  .pola-c-card {
+    flex: 0 0 75%;
+    min-width: 210px;
+  }
+}
+
+.pola-c-card-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.pola-c-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(15, 23, 42, 0.95) 0%,
+    rgba(15, 23, 42, 0.45) 45%,
+    rgba(15, 23, 42, 0.1) 100%
+  );
+  z-index: 2;
+}
+
+.pola-c-card-badge {
+  position: relative;
+  z-index: 3;
+  align-self: flex-end;
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(6px);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-pill, 9999px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.pola-c-card-bottom {
+  position: relative;
+  z-index: 3;
+}
+
+.pola-c-card-meta {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.85);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.pola-c-card-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.25;
+}
+
+/* Kontrol Bawah Carousel */
+.pola-c-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+.pola-c-nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pola-c-circle-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--navy, #1F2A44);
+  background-color: transparent;
+  color: var(--navy, #1F2A44);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pola-c-circle-btn:hover {
+  background-color: var(--navy, #1F2A44);
+  color: #ffffff;
+}
+
+.pola-c-circle-btn:focus-visible {
+  outline: 2px solid var(--navy, #1F2A44);
+  outline-offset: 2px;
+}
+
+/* --------------------------------------------------------------------------
+   POLA E: HEADING + 3 LANGKAH BERURUT
+   -------------------------------------------------------------------------- */
+.pola-e-heading {
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  font-weight: 700;
+  color: var(--navy, #1F2A44);
+  margin: 0 0 28px;
+}
+
+.pola-e-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .pola-e-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.pola-e-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.pola-e-bracket {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border: 2px solid var(--navy, #1F2A44);
+  border-radius: var(--radius-tile, 12px);
+  color: var(--navy, #1F2A44);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.pola-e-body h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--navy, #1F2A44);
+  margin: 0 0 4px;
+}
+
+.pola-e-body p {
+  font-size: 0.825rem;
+  line-height: 1.45;
+  color: #4b5563;
+  margin: 0;
+}
+
+/* --------------------------------------------------------------------------
+   POLA F: FOOTER
+   -------------------------------------------------------------------------- */
+.pola-footer {
+  background-color: var(--navy, #1F2A44);
+  color: #ffffff;
+  border-top-left-radius: var(--radius-panel, 24px);
+  border-top-right-radius: var(--radius-panel, 24px);
+  padding: clamp(36px, 5vw, 56px) 0 28px;
+  margin-top: var(--section-gap, clamp(3.5rem, 5.5vw, 4.75rem));
+}
+
+.pola-footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 36px;
+}
+
+@media (max-width: 768px) {
+  .pola-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.pola-footer-brand-title {
+  font-family: var(--font-judul, "Montserrat", sans-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 8px;
+}
+
+.pola-footer-desc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 16px;
+  max-width: 360px;
+}
+
+.pola-footer-col h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 12px;
+}
+
+.pola-footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pola-footer-links li {
+  margin-bottom: 8px;
+}
+
+.pola-footer-links a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.15s ease;
+}
+
+.pola-footer-links a:hover {
+  color: #ffffff;
+}
+
+.pola-footer-bottom {
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.65);
+}
