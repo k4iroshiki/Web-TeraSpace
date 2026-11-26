@@ -5,14 +5,14 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   // 1. Auto-close navbar collapse on mobile when link is clicked
-  const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
-  const navCollapse = document.getElementById("navPublicMenu");
+  const mobileCollapse = document.getElementById("navMobileMenu") || document.getElementById("navPublicMenu");
+  const mobileNavLinks = document.querySelectorAll("#navMobileMenu .nav-link, #navPublicMenu .nav-link");
 
-  if (navCollapse && window.bootstrap) {
-    navLinks.forEach((link) => {
+  if (mobileCollapse && window.bootstrap) {
+    mobileNavLinks.forEach((link) => {
       link.addEventListener("click", () => {
-        if (navCollapse.classList.contains("show")) {
-          const bsCollapse = window.bootstrap.Collapse.getInstance(navCollapse);
+        if (mobileCollapse.classList.contains("show")) {
+          const bsCollapse = window.bootstrap.Collapse.getInstance(mobileCollapse);
           if (bsCollapse) {
             bsCollapse.hide();
           }
@@ -50,34 +50,40 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // 4. Scroll spy: ubah menu aktif di navbar publik sesuai posisi scroll
-  const spyItems = [
-    ...document.querySelectorAll('#navPublicMenu .nav-link[href^="#"]'),
-  ]
+  const allNavAnchors = [
+    ...document.querySelectorAll('.pola-navbar-link[href^="#"]'),
+    ...document.querySelectorAll('#navMobileMenu .nav-link[href^="#"]')
+  ];
+
+  const spySections = allNavAnchors
     .map((link) => ({
       link,
       section: document.querySelector(link.getAttribute("href")),
     }))
     .filter((item) => item.section);
 
-  if (spyItems.length) {
+  if (spySections.length) {
     const updateActiveNav = () => {
       const offset = 120; // sedikit di bawah tinggi navbar sticky
-      let current = spyItems[0];
+      let currentSectionId = null;
 
-      spyItems.forEach((item) => {
+      spySections.forEach((item) => {
         if (item.section.getBoundingClientRect().top <= offset) {
-          current = item;
+          currentSectionId = item.section.getAttribute("id");
         }
       });
 
       // Mentok di bawah halaman -> aktifkan menu terakhir (Kontak)
       const atBottom =
         window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 4;
-      if (atBottom) current = spyItems[spyItems.length - 1];
+        document.documentElement.scrollHeight - 6;
+      if (atBottom) {
+        currentSectionId = "kontak";
+      }
 
-      spyItems.forEach(({ link }) => {
-        const isActive = link === current.link;
+      allNavAnchors.forEach((link) => {
+        const href = link.getAttribute("href");
+        const isActive = href === `#${currentSectionId}` || (!currentSectionId && href === "#beranda");
         link.classList.toggle("active", isActive);
         if (isActive) link.setAttribute("aria-current", "page");
         else link.removeAttribute("aria-current");
