@@ -1,18 +1,31 @@
 /**
- * Navigasi & Mobile Collapse Handler
+ * Navigasi Kapsul Melayang & Mobile Drawer Handler
  * Teras JTI - Kelompok 4 (NoBugNoCry)
  */
-
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Auto-close navbar collapse on mobile when link is clicked
-  const mobileCollapse = document.getElementById("navMobileMenu") || document.getElementById("navPublicMenu");
-  const mobileNavLinks = document.querySelectorAll("#navMobileMenu .nav-link, #navPublicMenu .nav-link");
+  const navbarWrapper = document.querySelector(".pola-navbar-wrapper");
+  const mobilePanel = document.getElementById("navMobilePanel");
+  const mobileNavLinks = document.querySelectorAll("#navMobilePanel a");
 
-  if (mobileCollapse && window.bootstrap) {
+  // 1. Bayangan kapsul melayang lebih pekat saat halaman digulir > 8px
+  if (navbarWrapper) {
+    const handleScrollShadow = () => {
+      if (window.scrollY > 8) {
+        navbarWrapper.classList.add("is-scrolled");
+      } else {
+        navbarWrapper.classList.remove("is-scrolled");
+      }
+    };
+    window.addEventListener("scroll", handleScrollShadow, { passive: true });
+    handleScrollShadow();
+  }
+
+  // 2. Tutup otomatis menu mobile setelah salah satu tautan diklik
+  if (mobilePanel && window.bootstrap) {
     mobileNavLinks.forEach((link) => {
       link.addEventListener("click", () => {
-        if (mobileCollapse.classList.contains("show")) {
-          const bsCollapse = window.bootstrap.Collapse.getInstance(mobileCollapse);
+        if (mobilePanel.classList.contains("show")) {
+          const bsCollapse = window.bootstrap.Collapse.getInstance(mobilePanel);
           if (bsCollapse) {
             bsCollapse.hide();
           }
@@ -21,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 2. Smooth scrolling for internal anchor links (#)
+  // 3. Smooth scrolling untuk tautan internal anchor (#)
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
       const targetId = this.getAttribute("href");
@@ -38,60 +51,83 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 3. Highlight active link in internal topbar based on URL
-  const currentPath = window.location.pathname.split("/").pop() || "index.html";
-  const internalNavLinks = document.querySelectorAll(".nav-utama .nav-link");
-  internalNavLinks.forEach((link) => {
-    const linkHref = link.getAttribute("href");
-    if (linkHref === currentPath) {
-      internalNavLinks.forEach((l) => l.classList.remove("active"));
-      link.classList.add("active");
-    }
-  });
+  // 4. ScrollSpy berbasis IntersectionObserver dengan fallback scroll listener
+  const desktopLinks = document.querySelectorAll(".pola-navbar-link[href^='#']");
+  const mobileLinks = document.querySelectorAll(".pola-navbar-mobile-link[href^='#']");
+  const allNavLinks = [...desktopLinks, ...mobileLinks];
 
-  // 4. Scroll spy: ubah menu aktif di navbar publik sesuai posisi scroll
-  const allNavAnchors = [
-    ...document.querySelectorAll('.pola-navbar-link[href^="#"]'),
-    ...document.querySelectorAll('#navMobileMenu .nav-link[href^="#"]')
-  ];
+  const sectionIds = ["beranda", "tentang", "fasilitas", "galeri", "alur", "jadwal", "faq", "kontak"];
+  const sections = sectionIds
+    .map((id) => document.getElementById(id))
+    .filter(Boolean);
 
-  const spySections = allNavAnchors
-    .map((link) => ({
-      link,
-      section: document.querySelector(link.getAttribute("href")),
-    }))
-    .filter((item) => item.section);
+  const setActiveLink = (currentId) => {
+    allNavLinks.forEach((link) => {
+      const href = link.getAttribute("href");
+      const isActive = href === `#${currentId}`;
+      link.classList.toggle("active", isActive);
+      if (isActive) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  };
 
-  if (spySections.length) {
-    const updateActiveNav = () => {
-      const offset = 120; // sedikit di bawah tinggi navbar sticky
-      let currentSectionId = null;
+  if ("IntersectionObserver" in window && sections.length > 0) {
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -65% 0px",
+      threshold: 0,
+    };
 
-      spySections.forEach((item) => {
-        if (item.section.getBoundingClientRect().top <= offset) {
-          currentSectionId = item.section.getAttribute("id");
+    let activeSectionId = "beranda";
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          activeSectionId = entry.target.id;
+          setActiveLink(activeSectionId);
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => observer.observe(section));
+
+    // Fallback bila pengguna telah menggulir sampai dasar halaman (aktifkan kontak)
+    window.addEventListener(
+      "scroll",
+      () => {
+        const atBottom =
+          window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 16;
+        if (atBottom) {
+          setActiveLink("kontak");
+        }
+      },
+      { passive: true }
+    );
+  } else {
+    // Fallback standar scroll offset
+    const handleScrollSpy = () => {
+      const offset = 110;
+      let currentId = "beranda";
+
+      sections.forEach((section) => {
+        if (section.getBoundingClientRect().top <= offset) {
+          currentId = section.id;
         }
       });
 
-      // Mentok di bawah halaman -> aktifkan menu terakhir (Kontak)
       const atBottom =
         window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 6;
-      if (atBottom) {
-        currentSectionId = "kontak";
-      }
+        document.documentElement.scrollHeight - 16;
+      if (atBottom) currentId = "kontak";
 
-      allNavAnchors.forEach((link) => {
-        const href = link.getAttribute("href");
-        const isActive = href === `#${currentSectionId}` || (!currentSectionId && href === "#beranda");
-        link.classList.toggle("active", isActive);
-        if (isActive) link.setAttribute("aria-current", "page");
-        else link.removeAttribute("aria-current");
-      });
+      setActiveLink(currentId);
     };
 
-    window.addEventListener("scroll", updateActiveNav, { passive: true });
-    window.addEventListener("resize", updateActiveNav);
-    updateActiveNav();
+    window.addEventListener("scroll", handleScrollSpy, { passive: true });
+    handleScrollSpy();
   }
 });
