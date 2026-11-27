@@ -1,6 +1,7 @@
 /**
  * Pola C - Carousel Kartu Portrait Controller
- * Mendukung navigasi tombol chevron (Prev / Next) dan keyboard accessibility.
+ * Mendukung scroll per kartu, penonaktifan tombol di ujung rel (disabled state),
+ * navigasi keyboard (panah kiri/kanan), dan touch-swipe scroll snap.
  */
 document.addEventListener("DOMContentLoaded", () => {
   const rail = document.getElementById("polaCCarouselRail");
@@ -12,8 +13,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const getScrollAmount = () => {
     const card = rail.querySelector(".pola-c-card");
     if (!card) return 240;
-    const gap = 16;
+    const style = window.getComputedStyle(rail);
+    const gap = parseFloat(style.columnGap || style.gap) || 20;
     return card.offsetWidth + gap;
+  };
+
+  const updateButtonStates = () => {
+    const scrollLeft = rail.scrollLeft;
+    const maxScroll = rail.scrollWidth - rail.clientWidth;
+    const tolerance = 4; // toleransi subpixel
+
+    prevBtn.disabled = scrollLeft <= tolerance;
+    nextBtn.disabled = scrollLeft >= maxScroll - tolerance;
   };
 
   prevBtn.addEventListener("click", () => {
@@ -24,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     rail.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
   });
 
-  // Keyboard navigation when rail or buttons are focused
+  // Keyboard navigation when rail is focused
   rail.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") {
       e.preventDefault();
@@ -34,4 +45,10 @@ document.addEventListener("DOMContentLoaded", () => {
       rail.scrollBy({ left: getScrollAmount(), behavior: "smooth" });
     }
   });
+
+  rail.addEventListener("scroll", updateButtonStates, { passive: true });
+  window.addEventListener("resize", updateButtonStates);
+
+  // Initial check
+  updateButtonStates();
 });
