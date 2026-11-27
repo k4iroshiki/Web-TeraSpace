@@ -49,6 +49,9 @@
   --latar: #f8fafc;
   --kartu: #ffffff;
   /* Design Tokens Spesifikasi Pola Layout */
+  --container-max: 1320px;
+  --container-pad: clamp(16px, 4vw, 48px);
+  --section-gap: clamp(48px, 7vw, 96px);
   --navy: #1F2A44;
   --navy-hover: #151D30;
   --slate-blue: #5B6B8A;
@@ -59,7 +62,6 @@
   --radius-card: 16px;
   --radius-tile: 12px;
   --radius-pill: 9999px;
-  --section-gap: clamp(3.5rem, 5.5vw, 4.75rem);
   --radius: 8px;
   --radius-besar: 12px;
   --lebar: 960px;
@@ -76,6 +78,8 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 92px;
 }
 
 body {
